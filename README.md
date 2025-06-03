@@ -1,4 +1,4 @@
-# Problemas de consistencia em conjunto de dados
+# Problemas de consistência em conjunto de dados
 
 ## Problemas de consistência
 ## ✅ Categorias duplicadas por erro de escrita (ex: 'Feminino', 'feminino', 'FEMININO')
@@ -20,5 +20,16 @@
 * ```df['coluna'] = df['coluna'].str.title()```. Todas as palavras com primeira letra maiúscula (título).
 * ```for col in df.select_dtypes(include='object').columns:  df[col] = df[col].str.strip().str.lower()```. Aplicar a todas as colunas de texto.
 ## ✅ Datas em formatos diferentes (dd/mm/yyyy, yyyy-mm-dd)
+* ```df['data'] = pd.to_datetime(df['data'], dayfirst=True, errors='coerce')```. Usar pd.to_datetime() para conversão automática.
+* ```df['data_formatada'] = df['data'].dt.strftime('%Y-%m-%d')```. Depois de converter, você pode formatar como string padronizada.
+* ```df['data'].isna().sum()```. Verifique se há NaT (erros na conversão).
 ## ✅ Unidades diferentes (ex: metros vs. centímetros)
+* ```df['altura_padrao'] = df['altura'].apply(lambda x: x / 100 if x > 10 else x)```. Se valores normais estão entre 1.0 e 2.5, então os que forem > 10 provavelmente estão em centímetros.
+* ```df['peso_kg'] = df['peso'].apply(lambda x: x / 1000 if x > 300 else x)```. Para múltiplas unidades.
+  * Origem - Destino - Fórmula
+    * ```cm → m_____m_____x / 100```
+    * ```mm → m_____m_____x / 1000```
+    * ```kg → g_____g_____x * 1000```
+    * ```ºF → ºC____ºC____(x - 32) * 5/9```
+    * ```in → cm____cm____x * 2.54```
 ## ✅ Codificação errada (ex: acentos quebrados por UTF-8/Latin-1)
