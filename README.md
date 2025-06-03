@@ -1,6 +1,5 @@
 # Problemas de consistência em conjunto de dados
 
-## Problemas de consistência
 ## ✅ Categorias duplicadas por erro de escrita (ex: 'Feminino', 'feminino', 'FEMININO')
 * ```df['sexo'] = df['sexo'].str.strip().str.lower()```. Limpar espaços e padronizar letras(minúsculas).
 * ```df['sexo'] = df['sexo'].str.strip().str.upper()```. Limpar espaços e padronizar letras(maiúscula).
