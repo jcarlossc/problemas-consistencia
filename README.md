@@ -14,6 +14,11 @@
 * ```df['coluna'] = df['coluna'].str.strip().str.replace(r'\s+', ' ', regex=True)```. Limpeza completa (combinar os dois anteriores).
 * ```for col in df.select_dtypes(include='object').columns:  df[col] = df[col].str.strip().str.replace(r'\s+', ' ', regex=True)```. Aplicar em todo o DataFrame.
 ## ✅ Letras maiúsculas/minúsculas misturadas
+* ```df['coluna'] = df['coluna'].str.lower()```. Tudo em minúsculas.
+* ```df['coluna'] = df['coluna'].str.upper()```. Tudo em maiúsculas.
+* ```df['coluna'] = df['coluna'].str.capitalize()```. Primeira letra maiúscula.
+* ```df['coluna'] = df['coluna'].str.title()```. Todas as palavras com primeira letra maiúscula (título).
+* ```for col in df.select_dtypes(include='object').columns:  df[col] = df[col].str.strip().str.lower()```. Aplicar a todas as colunas de texto.
 ## ✅ Datas em formatos diferentes (dd/mm/yyyy, yyyy-mm-dd)
 ## ✅ Unidades diferentes (ex: metros vs. centímetros)
 ## ✅ Codificação errada (ex: acentos quebrados por UTF-8/Latin-1)
