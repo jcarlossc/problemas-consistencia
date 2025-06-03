@@ -33,3 +33,7 @@
     * ```ºF → ºC____ºC____(x - 32) * 5/9```
     * ```in → cm____cm____x * 2.54```
 ## ✅ Codificação errada (ex: acentos quebrados por UTF-8/Latin-1)
+* ```df = pd.read_csv('arquivo.csv', encoding='utf-8')```. Mais comum.
+* ```df = pd.read_csv('arquivo.csv', encoding='latin1')```. Se acentos estiverem quebrados.
+* ```df = pd.read_csv('arquivo.csv', encoding='ISO-8859-1')```. Equivalente a latin1.
+* ```for col in df.select_dtypes(include='object'):  df[col] = df[col].apply(corrigir_texto)```. Aplicar a todas as colunas de texto.
